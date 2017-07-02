@@ -68,7 +68,7 @@ public class HashMapTest {
         String key = "key-7";
         hashMap.remove(key);
         assertNull(hashMap.get(key));
-        
+
         // test remove on non-existent entry
         assertNull(hashMap.remove(key));
     }
