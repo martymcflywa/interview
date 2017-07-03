@@ -54,8 +54,8 @@ public class HashMapChallenge {
         int index = hash(key);
         String output = null;
         for(int i = index; i < initSize; i += step(key)) {
-            if(array[index] != null && array[index].getKey().equals(key)) {
-                output = array[index].setValue(value);
+            if(array[i] != null && array[i].getKey().equals(key)) {
+                output = array[i].setValue(value);
                 break;
             }
         }
@@ -68,8 +68,8 @@ public class HashMapChallenge {
         int index = hash(key);
         String output = null;
         for(int i = index; i < initSize; i += step(key)) {
-            if(array[index] != null && array[index].getKey().equals(key)) {
-                output = array[index].getValue();
+            if(array[i] != null && array[i].getKey().equals(key)) {
+                output = array[i].getValue();
             }
         }
         return output;
@@ -79,9 +79,9 @@ public class HashMapChallenge {
         int index = hash(key);
         String output = null;
         for(int i = index; i < initSize; i += step(key)) {
-            if(array[index] != null && array[index].getKey().equals(key)) {
-                output = array[index].getValue();
-                array[index] = null;
+            if(array[i] != null && array[i].getKey().equals(key)) {
+                output = array[i].getValue();
+                array[i] = null;
                 size--;
             }
         }
