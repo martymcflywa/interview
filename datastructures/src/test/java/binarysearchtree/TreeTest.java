@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class TreeTest {
 
     private Tree tree;
-    private static int[] sample = getRandomData();
+    private static int[] sample = getRandomData(10);
 
     @Before
     public void setUp() throws Exception {
@@ -66,8 +66,8 @@ public class TreeTest {
         System.out.println(tree.postOrder() + "\n");
     }
 
-    private static int[] getRandomData() {
-        int[] sample = new int[10];
+    private static int[] getRandomData(int size) {
+        int[] sample = new int[size];
         for(int i = 0; i < sample.length; i++) {
             sample[i] = (int) (Math.random() * 100);
         }
