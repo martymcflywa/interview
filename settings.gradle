@@ -1,3 +1,4 @@
 rootProject.name = 'interview'
 include 'datastructures'
+include 'algorithms'
 

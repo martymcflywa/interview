@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/algorithms.iml" filepath="$PROJECT_DIR$/.idea/modules/algorithms.iml" group="algorithms" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/algorithms/algorithms_main.iml" filepath="$PROJECT_DIR$/.idea/modules/algorithms/algorithms_main.iml" group="algorithms" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/algorithms/algorithms_test.iml" filepath="$PROJECT_DIR$/.idea/modules/algorithms/algorithms_test.iml" group="algorithms" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/datastructures.iml" filepath="$PROJECT_DIR$/.idea/modules/datastructures.iml" group="datastructures" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/datastructures/datastructures_main.iml" filepath="$PROJECT_DIR$/.idea/modules/datastructures/datastructures_main.iml" group="datastructures" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/datastructures/datastructures_test.iml" filepath="$PROJECT_DIR$/.idea/modules/datastructures/datastructures_test.iml" group="datastructures" />
