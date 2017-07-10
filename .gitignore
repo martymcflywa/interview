@@ -122,6 +122,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+### MacOS ###
+# MacOS Metadata
+.DS_Store
+
 ### Gradle ###
 .gradle
 /build/
