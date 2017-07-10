@@ -35,17 +35,17 @@ public class Tree {
             node = new Node(data);
             return;
         } else {
-            if(data < node.data()) {
-                if(node.left() == null) {
-                    node.setLeft(new Node(data));
+            if(data < node.data) {
+                if(node.left == null) {
+                    node.left = new Node(data);
                 } else {
-                    traversePut(data, node.left());
+                    traversePut(data, node.left);
                 }
             } else {
-                if(node.right() == null) {
-                    node.setRight(new Node(data));
+                if(node.right == null) {
+                    node.right = new Node(data);
                 } else {
-                    traversePut(data, node.right());
+                    traversePut(data, node.right);
                 }
             }
         }
@@ -56,8 +56,8 @@ public class Tree {
      * @param target the int to find
      * @return the node containing the target
      */
-    public synchronized Node get(int target) {
-        return traverseGet(target, root);
+    public synchronized int get(int target) {
+        return traverseGet(target, root).data;
     }
 
     /**
@@ -70,11 +70,11 @@ public class Tree {
         if(node == null) {
             return null;
         }
-        if(target == node.data()) {
+        if(target == node.data) {
             return node;
         }
-        Node left = traverseGet(target, node.left());
-        Node right = traverseGet(target, node.right());
+        Node left = traverseGet(target, node.left);
+        Node right = traverseGet(target, node.right);
         if(left != null) {
             return left;
         }
@@ -101,9 +101,9 @@ public class Tree {
         if(node == null) {
             return null;
         }
-        sb.append(Integer.toString(node.data())).append(" ");
-        traversePreOrder(node.left(), sb);
-        traversePreOrder(node.right(), sb);
+        sb.append(node.toString()).append(" ");
+        traversePreOrder(node.left, sb);
+        traversePreOrder(node.right, sb);
         return sb;
     }
 
@@ -127,9 +127,9 @@ public class Tree {
         if(node == null) {
             return null;
         }
-        traverseInOrder(node.left(), sb);
-        sb.append(Integer.toString(node.data())).append(" ");
-        traverseInOrder(node.right(), sb);
+        traverseInOrder(node.left, sb);
+        sb.append(Integer.toString(node.data)).append(" ");
+        traverseInOrder(node.right, sb);
         return sb;
     }
 
@@ -153,9 +153,26 @@ public class Tree {
         if(node == null) {
             return null;
         }
-        traversePostOrder(node.left(), sb);
-        traversePostOrder(node.right(), sb);
-        sb.append(Integer.toString(node.data())).append(" ");
+        traversePostOrder(node.left, sb);
+        traversePostOrder(node.right, sb);
+        sb.append(Integer.toString(node.data)).append(" ");
         return sb;
+    }
+
+    private class Node {
+
+        private int data;
+        private Node left;
+        private Node right;
+
+        public Node(int data) {
+            this.data = data;
+            left = null;
+            right = null;
+        }
+
+        public String toString() {
+            return Integer.toString(data);
+        }
     }
 }

@@ -29,7 +29,7 @@ public class TreeTest {
     public void put() throws Exception {
         int expected = 106;
         tree.put(expected);
-        assertEquals(expected, tree.get(expected).data());
+        assertEquals(expected, tree.get(expected));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class TreeTest {
             tree.put(i);
         }
         for(int i : sample) {
-            assertEquals(i, tree.get(i).data());
+            assertEquals(i, tree.get(i));
         }
     }
 
