@@ -37,6 +37,9 @@ public class QuickSort {
     }
 
     private static void swap(int[] array, int left, int right) {
+        if(left == right) {
+            return;
+        }
         int temp = array[left];
         array[left] = array[right];
         array[right] = temp;
