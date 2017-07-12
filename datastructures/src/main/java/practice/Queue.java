@@ -8,6 +8,11 @@ public class Queue {
     private Node head;
     private Node tail;
 
+    public Queue() {
+        head = null;
+        tail = null;
+    }
+
     public boolean isEmpty() {
         return head == null;
     }
