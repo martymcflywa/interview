@@ -1,7 +1,5 @@
 package queue;
 
-import java.util.NoSuchElementException;
-
 /**
  * Created by poncem on 10/7/17.
  */
@@ -77,6 +75,7 @@ public class Queue {
 
         public Node(String data) {
             this.data = data;
+            next = null;
         }
     }
 }
