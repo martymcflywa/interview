@@ -60,7 +60,7 @@ public class Queue {
         if(isEmpty()) {
             return null;
         }
-        String data = head.data;
+        String data = peek();
         head = head.next;
         if(head == null) {
             tail = null;
