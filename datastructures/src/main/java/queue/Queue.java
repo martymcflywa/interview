@@ -28,10 +28,10 @@ public class Queue {
      * @return the String first in queue, else if queue is empty, return null.
      */
     public String peek() {
-        if(!isEmpty()) {
-            return head.data;
+        if(isEmpty()) {
+            return null;
         }
-        return null;
+        return head.data;
     }
 
     /**
@@ -41,13 +41,13 @@ public class Queue {
      */
     public void add(String data) {
         Node node = new Node(data);
+        if(isEmpty()) {
+            head = node;
+        }
         if(tail != null) {
             tail.next = node;
         }
         tail = node;
-        if(head == null) {
-            head = node;
-        }
     }
 
     /**
@@ -57,15 +57,15 @@ public class Queue {
      * @return the String being removed if the queue is not empty, else return null;
      */
     public String remove() {
-        if(!isEmpty()) {
-            String data = head.data;
-            head = head.next;
-            if(head == null) {
-                tail = null;
-            }
-            return data;
+        if(isEmpty()) {
+            return null;
         }
-        return null;
+        String data = head.data;
+        head = head.next;
+        if(head == null) {
+            tail = null;
+        }
+        return data;
     }
 
     private class Node {
