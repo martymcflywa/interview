@@ -26,10 +26,10 @@ public class Stack {
      * @return the data at the top of the stack if the stack is not empty, else return null.
      */
     public String peek() {
-        if(!isEmpty()) {
-            return top.data;
+        if(isEmpty()) {
+            return null;
         }
-        return null;
+        return top.data;
     }
 
     /**
@@ -50,12 +50,12 @@ public class Stack {
      * @return data at the top of the stack if the stack is not empty, else return null.
      */
     public String pop() {
-        if(!isEmpty()) {
-            String output = top.data;
-            top = top.next;
-            return output;
+        if(isEmpty()) {
+            return null;
         }
-        return null;
+        String data = peek();
+        top = top.next;
+        return data;
     }
 
     private class Node {
@@ -65,6 +65,7 @@ public class Stack {
 
         public Node(String data) {
             this.data = data;
+            next = null;
         }
     }
 }
