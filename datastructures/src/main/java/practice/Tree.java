@@ -11,10 +11,6 @@ public class Tree {
         root = null;
     }
 
-    public boolean isEmpty() {
-        return root == null;
-    }
-
     public void insert(String data) {
         root = insert(data, root);
     }
@@ -61,7 +57,7 @@ public class Tree {
             node.right = remove(data, node.right);
         } else if(node.left != null && node.right != null) {
             node.data = findMin(node.right).data;
-            node.right = remove(node.data, node.right);
+            node.right = remove(data, node.right);
         } else {
             node = node.left;
             if(node != null) {
@@ -78,7 +74,8 @@ public class Tree {
     private Node findMin(Node node) {
         if(node == null) {
             return null;
-        } else if(node.left == null) {
+        }
+        if(node.left == null) {
             return node;
         }
         return findMin(node.left);
@@ -91,7 +88,8 @@ public class Tree {
     private Node findMax(Node node) {
         if(node == null) {
             return null;
-        } else if(node.right == null) {
+        }
+        if(node.right == null) {
             return node;
         }
         return findMax(node.right);
@@ -102,6 +100,10 @@ public class Tree {
             return null;
         }
         return node.data;
+    }
+
+    public boolean isEmpty() {
+        return root == null;
     }
 
     private class Node {
