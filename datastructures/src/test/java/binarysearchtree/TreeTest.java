@@ -59,4 +59,14 @@ public class TreeTest {
         }
         assertTrue(tree.isEmpty());
     }
+
+    @Test
+    public void orders() throws Exception {
+        for(String s : sample) {
+            tree.insert(s);
+        }
+        tree.preOrder();
+        tree.inOrder();
+        tree.postOrder();
+    }
 }

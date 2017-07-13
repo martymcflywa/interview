@@ -22,7 +22,8 @@ public class Tree {
     private Node insert(String data, Node node) {
         if(node == null) {
             node = new Node(data);
-        } else if(data.compareTo(node.data) < 0) {
+        }
+        if(data.compareTo(node.data) < 0) {
             node.left = insert(data, node.left);
         } else if(data.compareTo(node.data) > 0) {
             node.right = insert(data, node.right);
@@ -78,7 +79,8 @@ public class Tree {
     private Node findMin(Node node) {
         if(node == null) {
             return null;
-        } else if(node.left == null) {
+        }
+        if(node.left == null) {
             return node;
         }
         return findMin(node.left);
@@ -91,7 +93,8 @@ public class Tree {
     private Node findMax(Node node) {
         if(node == null) {
             return null;
-        } else if(node.right == null) {
+        }
+        if(node.right == null) {
             return node;
         }
         return findMax(node.right);
@@ -102,6 +105,48 @@ public class Tree {
             return null;
         }
         return node.data;
+    }
+
+    public void preOrder() {
+        System.out.println("\nPRE-ORDER:");
+        preOrder(root);
+    }
+
+    private void preOrder(Node node) {
+        if(node == null) {
+            return;
+        }
+        System.out.print(node.data + " ");
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    public void inOrder() {
+        System.out.println("\nIN-ORDER:");
+        inOrder(root);
+    }
+
+    private void inOrder(Node node) {
+        if(node == null) {
+            return;
+        }
+        inOrder(node.left);
+        System.out.print(node.data + " ");
+        inOrder(node.right);
+    }
+
+    public void postOrder() {
+        System.out.println("\nPOST-ORDER");
+        postOrder(root);
+    }
+
+    private void postOrder(Node node) {
+        if(node == null) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.print(node.data + " ");
     }
 
     private class Node {
