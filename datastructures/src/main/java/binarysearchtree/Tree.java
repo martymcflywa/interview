@@ -11,168 +11,109 @@ public class Tree {
         root = null;
     }
 
-    /**
-     * Adds data to tree. If root is null, create new node, else call node's put method to recursively find correct
-     * place to add node.
-     * @param data the int to add
-     */
-    public synchronized void put(int data) {
-        if(root == null) {
-            root = new Node(data);
-        } else {
-            traversePut(data, root);
-        }
+    public boolean isEmpty() {
+        return root == null;
     }
 
-    /**
-     * Adds node to tree. If data less than this.data, add as new left node if null, else recursively call until next
-     * left null is found. If data is greater than this.data, do the same but for right node.
-     * @param data the data to add
-     * @param node the node to start at, start with root
-     */
-    public synchronized void traversePut(int data, Node node) {
+    public void insert(String data) {
+        root = insert(data, root);
+    }
+
+    private Node insert(String data, Node node) {
         if(node == null) {
             node = new Node(data);
-            return;
-        } else {
-            if(data < node.data) {
-                if(node.left == null) {
-                    node.left = new Node(data);
-                } else {
-                    traversePut(data, node.left);
-                }
-            } else {
-                if(node.right == null) {
-                    node.right = new Node(data);
-                } else {
-                    traversePut(data, node.right);
-                }
-            }
+        } else if(data.compareTo(node.data) < 0) {
+            node.left = insert(data, node.left);
+        } else if(data.compareTo(node.data) > 0) {
+            node.right = insert(data, node.right);
         }
+        return node;
     }
 
-    /**
-     * Public interface for Tree#get(). Recursively calls Tree#traverseGet() to find target int.
-     * @param target the int to find
-     * @return the node containing the target
-     */
-    public synchronized int get(int target) {
-        return traverseGet(target, root).data;
+    public String find(String data) {
+        return dataAt(find(data, root));
     }
 
-    /**
-     * Recursively called to find int target. If target less than node value, move to left node, else move to right.
-     * @param target the int to find
-     * @param node the node to start the search, start at root
-     * @return the node containing data that matches target
-     */
-    private synchronized Node traverseGet(int target, Node node) {
+    private Node find(String data, Node node) {
         if(node == null) {
             return null;
         }
-        if(target == node.data) {
+        if(data.compareTo(node.data) < 0) {
+            return find(data, node.left);
+        } else if(data.compareTo(node.data) > 0) {
+            return find(data, node.right);
+        } else {
             return node;
         }
-        Node left = traverseGet(target, node.left);
-        Node right = traverseGet(target, node.right);
-        if(left != null) {
-            return left;
+    }
+
+    public void remove(String data) {
+        root = remove(data, root);
+    }
+
+    private Node remove(String data, Node node) {
+        if(node == null) {
+            return null; // data not found
         }
-        return right;
+        if(data.compareTo(node.data) < 0) {
+            node.left = remove(data, node.left); // data is less than current data
+        } else if(data.compareTo(node.data) > 0) {
+            node.right = remove(data, node.right); // data is greater than current data
+        } else if(node.left != null && node.right != null) { // there are left and right children
+            node.data = findMin(node.right).data; // replace data with the min data starting from right child
+            node.right = remove(node.data, node.right); // remove nodes starting from right child
+        } else {
+            node = node.left;
+            if(node != null) {
+                node = node.right;
+            }
+        }
+        return node;
     }
 
-    /**
-     * Traverse tree preorder. Calls traversePreOrder recursively.
-     * @return the string representing the preorder traversal
-     */
-    public synchronized String preOrder() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("PRE-ORDER:\n");
-        return traversePreOrder(root, sb).toString();
+    public String findMin() {
+        return dataAt(findMin(root));
     }
 
-    /**
-     * Traverse tree preorder. Recursively traverses via: visit node, left node, right node.
-     * @param node the node to start the traversal, start at root
-     * @param sb the stringbuilder to append the traversal string to
-     * @return the string representing the preorder traversal
-     */
-    private synchronized StringBuilder traversePreOrder(Node node, StringBuilder sb) {
+    private Node findMin(Node node) {
+        if(node == null) {
+            return null;
+        } else if(node.left == null) {
+            return node;
+        }
+        return findMin(node.left);
+    }
+
+    public String findMax() {
+        return dataAt(findMax(root));
+    }
+
+    private Node findMax(Node node) {
+        if(node == null) {
+            return null;
+        } else if(node.right == null) {
+            return node;
+        }
+        return findMax(node.right);
+    }
+
+    private String dataAt(Node node) {
         if(node == null) {
             return null;
         }
-        sb.append(node.toString()).append(" ");
-        traversePreOrder(node.left, sb);
-        traversePreOrder(node.right, sb);
-        return sb;
-    }
-
-    /**
-     * Traverse tree inorder. Calls traverseInOrder recursively.
-     * @return the string representing the inorder traversal
-     */
-    public synchronized String inOrder() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("IN-ORDER:\n");
-        return traverseInOrder(root, sb).toString();
-    }
-
-    /**
-     * Traverse tree inorder. Recursively traverses via: left node, visit node, right node.
-     * @param node the node to start the traversal, start at root
-     * @param sb the stringbuilder to append the traversal string to
-     * @return the string representing the inorder traversal
-     */
-    private synchronized StringBuilder traverseInOrder(Node node, StringBuilder sb) {
-        if(node == null) {
-            return null;
-        }
-        traverseInOrder(node.left, sb);
-        sb.append(Integer.toString(node.data)).append(" ");
-        traverseInOrder(node.right, sb);
-        return sb;
-    }
-
-    /**
-     * Traverse tree postorder. Calls traversePostOrder recursively.
-     * @return the string representing the inorder traversal
-     */
-    public synchronized String postOrder() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("POST-ORDER:\n");
-        return traversePostOrder(root, sb).toString();
-    }
-
-    /**
-     * Traverse tree postorder. Recursively traverses via: left node, right node, visit node.
-     * @param node the node to start the traversal, start at root
-     * @param sb the stringbuilder to append the traversal string to
-     * @return the string representing the postorder traversal
-     */
-    private synchronized StringBuilder traversePostOrder(Node node, StringBuilder sb) {
-        if(node == null) {
-            return null;
-        }
-        traversePostOrder(node.left, sb);
-        traversePostOrder(node.right, sb);
-        sb.append(Integer.toString(node.data)).append(" ");
-        return sb;
+        return node.data;
     }
 
     private class Node {
 
-        private int data;
+        private String data;
         private Node left;
         private Node right;
 
-        public Node(int data) {
+        public Node(String data) {
             this.data = data;
             left = null;
             right = null;
-        }
-
-        public String toString() {
-            return Integer.toString(data);
         }
     }
 }

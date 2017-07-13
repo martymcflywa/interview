@@ -12,7 +12,9 @@ import static org.junit.Assert.*;
 public class TreeTest {
 
     private Tree tree;
-    private static int[] sample = getRandomData(10);
+    private static String[] sample = {"c", "a", "f", "g", "d", "b", "e"};
+    private static String MIN = sample[1];
+    private static String MAX = sample[3];
 
     @Before
     public void setUp() throws Exception {
@@ -26,57 +28,35 @@ public class TreeTest {
     }
 
     @Test
-    public void put() throws Exception {
-        int expected = 106;
-        tree.put(expected);
-        assertEquals(expected, tree.get(expected));
+    public void insert() throws Exception {
+        assertTrue(tree.isEmpty());
+        for(String s : sample) {
+            tree.insert(s);
+        }
+        assertFalse(tree.isEmpty());
+        assertEquals(MIN, tree.findMin());
+        assertEquals(MAX, tree.findMax());
     }
 
     @Test
-    public void get() throws Exception {
-        for(int i : sample) {
-            tree.put(i);
+    public void find() throws Exception {
+        for(String s : sample) {
+            tree.insert(s);
         }
-        for(int i : sample) {
-            assertEquals(i, tree.get(i));
+        for(String s : sample) {
+            assertEquals(s, tree.find(s));
         }
     }
 
     @Test
-    public void preOrder() throws Exception {
-        for(int i : sample) {
-            tree.put(i);
+    public void remove() throws Exception {
+        for(String s : sample) {
+            tree.insert(s);
         }
-        System.out.println(tree.preOrder() + "\n");
-    }
-
-    @Test
-    public void inOrder() throws Exception {
-        for(int i : sample) {
-            tree.put(i);
+        assertFalse(tree.isEmpty());
+        for(String s : sample) {
+            tree.remove(s);
         }
-        System.out.println(tree.inOrder() + "\n");
-    }
-
-    @Test
-    public void postOrder() throws Exception {
-        for(int i : sample) {
-            tree.put(i);
-        }
-        System.out.println(tree.postOrder() + "\n");
-    }
-
-    private static int[] getRandomData(int size) {
-        int[] sample = new int[size];
-        for(int i = 0; i < sample.length; i++) {
-            sample[i] = (int) (Math.random() * 100);
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append("INPUT:\n");
-        for(int i : sample) {
-            sb.append(i).append(" ");
-        }
-        System.out.println(sb.toString() + "\n");
-        return sample;
+        assertTrue(tree.isEmpty());
     }
 }
