@@ -11,6 +11,10 @@ public class Tree {
         root = null;
     }
 
+    public boolean isEmpty() {
+        return root == null;
+    }
+
     public void insert(String data) {
         root = insert(data, root);
     }
@@ -18,7 +22,8 @@ public class Tree {
     private Node insert(String data, Node node) {
         if(node == null) {
             node = new Node(data);
-        } else if(data.compareTo(node.data) < 0) {
+        }
+        if(data.compareTo(node.data) < 0) {
             node.left = insert(data, node.left);
         } else if(data.compareTo(node.data) > 0) {
             node.right = insert(data, node.right);
@@ -38,9 +43,8 @@ public class Tree {
             return find(data, node.left);
         } else if(data.compareTo(node.data) > 0) {
             return find(data, node.right);
-        } else {
-            return node;
         }
+        return node;
     }
 
     public void remove(String data) {
@@ -57,7 +61,7 @@ public class Tree {
             node.right = remove(data, node.right);
         } else if(node.left != null && node.right != null) {
             node.data = findMin(node.right).data;
-            node.right = remove(data, node.right);
+            node.right = remove(node.data, node.right);
         } else {
             node = node.left;
             if(node != null) {
@@ -100,10 +104,6 @@ public class Tree {
             return null;
         }
         return node.data;
-    }
-
-    public boolean isEmpty() {
-        return root == null;
     }
 
     private class Node {
