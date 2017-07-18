@@ -14,14 +14,14 @@ public class ReverseTest {
     public void reverseInt() {
         int[] expected = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
         int[] actual = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        assertArrayEquals(expected, problems.Reverse.reverseIterativeInt(actual));
+        assertArrayEquals(expected, Reverse.reverseIterativeInt(actual));
     }
 
     @Test
     public void reverseIterativeString() {
         String expected = "abcdefg";
         String actual = "gfedcba";
-        assertEquals(expected, problems.Reverse.reverseIterativeString(actual));
+        assertEquals(expected, Reverse.reverseIterativeString(actual));
     }
 
     @Test

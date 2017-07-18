@@ -14,22 +14,22 @@ public class TwoSumTest {
 
     @Test
     public void findNaive() {
-        problems.TwoSum.findWithNestedLoop(noDuplicates, targetSum);
-        problems.TwoSum.findWithNestedLoop(duplicates, targetSum);
-        problems.TwoSum.findWithNestedLoop(negatives, targetSum);
+        TwoSum.findWithNestedLoop(noDuplicates, targetSum);
+        TwoSum.findWithNestedLoop(duplicates, targetSum);
+        TwoSum.findWithNestedLoop(negatives, targetSum);
     }
 
     @Test
     public void findSet() {
-        problems.TwoSum.findWithHashSet(noDuplicates, targetSum);
-        problems.TwoSum.findWithHashSet(duplicates, targetSum);
-        problems.TwoSum.findWithHashSet(negatives, targetSum);
+        TwoSum.findWithHashSet(noDuplicates, targetSum);
+        TwoSum.findWithHashSet(duplicates, targetSum);
+        TwoSum.findWithHashSet(negatives, targetSum);
     }
 
     @Test
     public void findWithTwoPointers() {
-        problems.TwoSum.findWithTwoPointers(noDuplicates, targetSum);
-        problems.TwoSum.findWithTwoPointers(duplicates, targetSum);
+        TwoSum.findWithTwoPointers(noDuplicates, targetSum);
+        TwoSum.findWithTwoPointers(duplicates, targetSum);
         TwoSum.findWithTwoPointers(negatives, targetSum);
     }
 }
